@@ -1,4 +1,4 @@
-from tkinter import *
+from Tkinter import *
 import pyperclip
 
 mainlist = []
@@ -8,22 +8,23 @@ root = Tk()
 
 def new_window1(index):
      win=Toplevel()
-     #sbar=Scrollbar(win,orient=VERTICAL)
-     #sbar.pack(side=RIGHT,fill=Y,expand=FALSE)
-     #canvas=Canvas(win,yscrollcommand=sbar.set)
-     #canvas.pack(side=LEFT,fill=BOTH,expand=TRUE)
-
+##     canvas=Canvas(win)
+##     canvas.pack(side=LEFT,fill=BOTH,expand=TRUE)
      frame1=Frame(win)
+     sbar=Scrollbar(frame1)
      text1 = Text(frame1)
      text1.insert(INSERT,copydict[index])
-     text1.pack()
+     sbar.config(command=text1.yview)
+     text1.config(yscrollcommand=sbar.set)
+     sbar.pack(side=RIGHT,fill=Y,expand=False)
+     text1.pack(side=LEFT,fill=BOTH,expand=True)
+     
+     
      frame1.pack()
 
 
 def store():
     global root,index
-
-
     spam = pyperclip.paste()
     mainlist.append(spam)
     index=index+1
@@ -48,6 +49,6 @@ def get(index):
 
 store_button = Button(root, text="store", command=store)
 store_button.pack()
-root.pack(bg=YELLOW)
+#root.pack(Tkinter.Tk.__init__(self))
 root.mainloop()
 
