@@ -12,15 +12,14 @@ root = Tk()
 def new_window1(message):
 
      win=Toplevel()
-     #sbar=Scrollbar(win,orient=VERTICAL)
-     #sbar.pack(side=RIGHT,fill=Y,expand=FALSE)
-     #canvas=Canvas(win,yscrollcommand=sbar.set)
-     #canvas.pack(side=LEFT,fill=BOTH,expand=TRUE)
-
      frame1=Frame(win)
+     sbar=Scrollbar(frame1)
      text1 = Text(frame1)
      text1.insert(INSERT,message)
-     text1.pack()
+     sbar.config(command=text1.yview)
+     text1.config(yscrollcommand=sbar.set)
+     sbar.pack(side=RIGHT,fill=Y,expand=False)
+     text1.pack(side=LEFT,fill=BOTH,expand=True)
      frame1.pack()
 
 def copy1(message):
